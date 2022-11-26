@@ -1,22 +1,36 @@
-:root{
+:root {
     --flag-blue: #1d71f6;
     --flag-orange: #f8a310;
     --flag-red: #ca0000;
-
     --dimmer: #2c313a;
     --main: #3e4551;
 }
-body{
+
+body {
     background: var(--dimmer);
     color: white;
     width: 100%;
     margin-top: 68px;
+    font-family: dejavu-serif;
+}
+
+
+/* Fonts */
+
+@font-face {
+    font-family: dejavu-sans;
+    src: url("assets/DEJAVUSANS.TTF");
+}
+
+@font-face {
+    font-family: dejavu-serif;
+    src: url("assets/DEJAVUSERIF.TTF");
 }
 
 
 /* Flag */
 
-#flag{
+#flag {
     position: fixed;
     left: 0px;
     top: 20px;
@@ -25,7 +39,8 @@ body{
     background: var(--flag-orange);
     box-shadow: 0px 20px 10px 0px black;
 }
-#flag::before{
+
+#flag::before {
     content: "";
     position: fixed;
     left: 0px;
@@ -34,7 +49,8 @@ body{
     width: 100vw;
     background: var(--flag-blue);
 }
-#flag::after{
+
+#flag::after {
     content: "";
     position: fixed;
     left: 0px;
@@ -47,7 +63,7 @@ body{
 
 /* Article */
 
-article{
+article {
     position: absolute;
     top: 80px;
     left: 25vw;
@@ -57,22 +73,26 @@ article{
     box-shadow: 0px 0px 10px 0px black;
     border-radius: 10px;
 }
-h1{
+
+h1 {
     font-size: 25pt;
     margin-left: 10px;
     margin-top: 10px;
     margin-bottom: 5px;
 }
-#article-image{
+
+#article-image {
     width: calc(50vw - 20px);
+    max-height: 50vh;
     margin: 10px;
     margin-bottom: 0px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px black;
 }
-#article-content{
+
+#article-content {
     padding-left: 10px;
     padding-right: 10px;
     margin-top: 0px;
-    font-size: 12pt;
+    font-size: 14pt;
 }
