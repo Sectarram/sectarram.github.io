@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nametag Generator</title>
+</head>
+<body>
+    <div id="result"></div>
+    
+    <input type="text" oninput="regenerateResult()" id="input">
+
+    <div id="buttons"></div>
+    <button style="text-shadow: 1.5pt 1.5pt 0px #3F3F3F; color: white; font-weight: bold;" onclick="input.value += '&l'; input.focus()">bold</button> <button style="text-shadow: 1.5pt 1.5pt 0px #3F3F3F; color: white; font-style: italic;" onclick="input.value += '&o'; input.focus()">italic</button> <button style="text-shadow: 1.5pt 1.5pt 0px #3F3F3F; color: white" onclick="input.value += '&r'; input.focus()">reset</button>
+
+    <script>
+const foreground = {
+    black: "#000000",
+    dark_blue: "#0000AA",
+    dark_green: "#00AA00",
+    dark_aqua: "#00AAAA",
+    dark_red: "#AA0000",
+    dark_purple: "#AA00AA",
+    gold: "#FFAA00",
+    gray: "#AAAAAA",
+    dark_gray : "#555555",
+    blue: "#5555FF",
+    green: "#55FF55",
+    aqua: "#55FFFF",
+    red: "#FF5555",
+    light_purple: "#FF55FF",
+    yellow: "#FFFF55",
+    white: "#FFFFFF"
+}
+const background = {
+    black: "#000000",
+    dark_blue: "#00002A",
+    dark_green: "#002A00",
+    dark_aqua: "#002A2A",
+    dark_red: "#2A0000",
+    dark_purple: "#2A002A",
+    gold: "#2A2A00",
+    gray: "#2A2A2A",
+    dark_gray : "#151515",
+    blue: "#15153F",
+    green: "#153F15",
+    aqua: "#153F3F",
+    red: "#3F1515",
+    light_purple: "#3F153F",
+    yellow: "#3F3F15",
+    white: "#3F3F3F"
+}
+const references = {
+    0: "black",
+    1: "dark_blue",
+    2: "dark_green",
+    3: "dark_aqua",
+    4: "dark_red",
+    5: "dark_purple",
+    6: "gold",
+    7: "gray",
+    8: "dark_gray",
+    9: "blue",
+    a: "green",
+    b: "aqua",
+    c: "red",
+    d: "light_purple",
+    e: "yellow",
+    f: "white"
+}
+
+const input = document.getElementById("input")
+const resultElement = document.getElementById("result")
+const buttonsElement = document.getElementById("buttons")
+
+for(let reference of Object.keys(references)){
+    console.log(reference)
+    const button = document.createElement("button")
+    button.onclick = () => { input.value += "&" + reference; input.focus() }
+    button.innerText = references[reference]
+    button.style.color = foreground[references[reference]]
+    button.style.textShadow = `1.5pt 1.5pt 0px ${background[references[reference]]}`
+    buttonsElement.appendChild(button)
+}
+
+function regenerateResult(){
+    resultElement.innerHTML = ""
+
+    let currentColor = "white"
+    let styles = []
+    let changeColor = false
+    for(let letter of input.value){
+        if(letter == "&"){
+            changeColor = true
+            continue
+        }
+        if(changeColor){
+            changeColor = false
+            switch(letter){
+                case "l":
+                    styles.push("bold")
+                    continue
+                case "o":
+                    styles.push("italic")
+                    continue
+                case "r":
+                    styles = []
+                    currentColor = "white"
+                    continue
+                default:
+                    break
+            }
+            currentColor = references[letter]
+            continue
+        }
+        const element = document.createElement("span")
+        element.style.color = foreground[currentColor]
+        element.style.textShadow = `5pt 5pt 0px ${background[currentColor]}`
+        if(styles.includes("bold")) element.style.fontWeight = "bold"
+        if(styles.includes("strikethrough")) element.style.textDecoration = "line-through"
+        if(styles.includes("underline")) element.style.textDecoration = "underline"
+        if(styles.includes("italic")) element.style.fontStyle = "italic"
+        element.innerText = letter
+        resultElement.appendChild(element)
+    }
+}
+    </script>
+
+    <style>
+        @font-face {
+            font-family: minecraft;
+            src: url(assets/MinecraftRegular-Bmg3.otf);
+        }
+        body{
+            max-width: 800px;
+        }
+        #result{
+            font-size: 50pt;
+            background: #979797;
+            padding: 10px;
+            font-family: minecraft;
+        }
+        #input{
+            margin-top: 20px;
+            font-size: 15pt;
+            font-family: minecraft;
+        }
+        button{
+            font-family: minecraft;
+            width: 100pt;
+            height: 50pt;
+            margin: 10px;
+            font-size: 15pt;
+            text-align: center;
+            background: #979797;
+        }
+    </style>
+</body>
+</html>
