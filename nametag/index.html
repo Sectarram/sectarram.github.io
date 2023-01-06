@@ -14,6 +14,10 @@
     <div id="buttons"></div>
     <button style="text-shadow: 1.5pt 1.5pt 0px #3F3F3F; color: white; font-weight: bold;" onclick="input.value += '&l'; input.focus()">bold</button> <button style="text-shadow: 1.5pt 1.5pt 0px #3F3F3F; color: white; font-style: italic;" onclick="input.value += '&o'; input.focus()">italic</button> <button style="text-shadow: 1.5pt 1.5pt 0px #3F3F3F; color: white" onclick="input.value += '&r'; input.focus()">reset</button>
 
+    <h3>Nametag Generator</h3>
+    <p>This website will let you preview and make nametags for the Sectarram SMP using Minecraft formatting codes. Press a button to add that corresponding code to the input. Make sure you add a reset code to the end of the nametag so nothing breaks.</p>
+    <p>This website also works on mobile! Since it auto focuses the input when you press a button, you dont have to worry about clicking back onto the input.</p>
+
     <script>
 const foreground = {
     black: "#000000",
@@ -134,6 +138,7 @@ function regenerateResult(){
         }
         body{
             max-width: 800px;
+            font-family: minecraft;
         }
         #result{
             font-size: 50pt;
