@@ -121,10 +121,11 @@ function regenerateResult(){
         const element = document.createElement("span")
         element.style.color = foreground[currentColor]
         element.style.textShadow = `5pt 5pt 0px ${background[currentColor]}`
-        if(styles.includes("bold")) element.style.fontWeight = "bold"
-        if(styles.includes("strikethrough")) element.style.textDecoration = "line-through"
-        if(styles.includes("underline")) element.style.textDecoration = "underline"
-        if(styles.includes("italic")) element.style.fontStyle = "italic"
+        if(styles.includes("bold")){
+            element.style.fontFamily = "minecraft-bold"
+            if(styles.includes("italic")) element.style.fontFamily = "minecraft-bolditalic"
+        }
+        else if(styles.includes("italic")) element.style.fontFamily = "minecraft-italic"
         element.innerText = letter
         resultElement.appendChild(element)
     }
@@ -135,6 +136,18 @@ function regenerateResult(){
         @font-face {
             font-family: minecraft;
             src: url(assets/MinecraftRegular-Bmg3.otf);
+        }
+        @font-face {
+            font-family: minecraft-italic;
+            src: url(assets/MinecraftItalic-R8Mo.otf);
+        }
+        @font-face {
+            font-family: minecraft-bold;
+            src: url(assets/MinecraftBold-nMK1.otf);
+        }
+        @font-face {
+            font-family: minecraft-bolditalic;
+            src: url(assets/MinecraftBoldItalic-1y1e.otf);
         }
         body{
             max-width: 800px;
